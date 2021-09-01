@@ -2,11 +2,21 @@
   "name": "uni-utils",
   "version": "1.0.0",
   "description": "universal utils",
-  "main": "src/index.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.esm.js",
+  "typings": "./lib/index.d.ts",
   "scripts": {
-    "build": "rollup --c rollup.config.ts",
+    "build:rollup": "rollup --c rollup.config.ts",
+    "build": "gulp build",
     "api": "api-extractor run",
-    "test": "jest --coverage --verbose -u"
+    "prepublishOnly": "yarn lint & yarn test & yarn changelog & yarn build",
+    "test": "jest --coverage --verbose -u",
+    "lint": "eslint --ext .js,.ts --format=pretty ./src",
+    "lint:fix": "eslint --fix --ext .js,.ts --format=pretty ./src",
+    "changelog": "gulp changelog",
+    "version": "yarn changelog && git add CHANGELOG.md",
+    "release": "yarn test && yarn build && np --no-cleanup --yolo --any-branch",
+    "prepare": "husky install"
   },
   "keywords": [
     "uni",
@@ -14,6 +24,24 @@
   ],
   "author": "kim",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged & jest -u"
+    }
+  },
+  "lint-staged": {
+    "*.{.ts,.js}": [
+      "eslint",
+      "git add"
+    ]
+  },
+  "files": [
+    "lib",
+    "LICENSE",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "sideEffects": "false",
   "dependencies": {
     "@babel/core": "^7.15.0",
     "typescript": "^4.4.2"
@@ -21,11 +49,19 @@
   "devDependencies": {
     "@babel/preset-env": "^7.15.0",
     "@microsoft/api-extractor": "^7.18.7",
+    "@types/conventional-changelog": "^3.1.1",
+    "@types/fs-extra": "^9.0.12",
+    "@types/gulp": "^4.0.9",
     "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
+    "chalk": "^4.1.2",
+    "conventional-changelog-cli": "^2.1.1",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^24.4.0",
+    "fs-extra": "^10.0.0",
+    "gulp": "^4.0.2",
     "jest": "^27.1.0",
     "rollup": "^2.56.3",
     "rollup-plugin-babel": "^4.4.0",
@@ -34,6 +70,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
-    "ts-jest": "^27.0.5"
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1"
   }
 }

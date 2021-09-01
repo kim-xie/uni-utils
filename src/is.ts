@@ -1,4 +1,19 @@
+/**
+ * 判断是否是数组对象类型
+ * @param param - input string 
+ * @returns 反参
+ * 
+ * @beta
+ */
 export const isObject = (param: unknown):boolean => Object.prototype.toString.call(param) === "[object Object]"
+
+/**
+ * 判断是否是数组数据类型
+ * @param param - input string
+ * @returns 反参
+ * 
+ * @beta
+ */
 export const isArray = (param: unknown):boolean => Object.prototype.toString.call(param) === "[object Array]"
 
 /**
@@ -11,6 +26,5 @@ export const isArray = (param: unknown):boolean => Object.prototype.toString.cal
  * isColor('#ffffff') => true
  * ```
  * @beta
- * @author kim
  */
 export const isColor = (value: string): boolean => /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value);
