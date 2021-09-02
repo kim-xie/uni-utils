@@ -2,12 +2,11 @@
   "name": "uni-utils",
   "version": "1.0.0",
   "description": "universal utils",
-  "main": "./lib/index.js",
-  "module": "./lib/index.esm.js",
-  "typings": "./lib/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
-    "build:rollup": "rollup --c rollup.config.ts",
-    "build": "gulp build",
+    "build": "rollup --c rollup.config.ts && gulp build",
     "api": "api-extractor run",
     "prepublishOnly": "yarn lint & yarn test & yarn changelog & yarn build",
     "test": "jest --coverage --verbose -u",
@@ -36,7 +35,7 @@
     ]
   },
   "files": [
-    "lib",
+    "dist",
     "LICENSE",
     "CHANGELOG.md",
     "README.md"

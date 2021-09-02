@@ -4,14 +4,23 @@
 
 ```ts
 
-// @public (undocumented)
-export namespace is {
-        {
+declare namespace is {
+    export {
         isObject,
         isArray,
         isColor
     }
 }
+export { is }
+
+// @beta
+const isArray: (param: unknown) => boolean;
+
+// @beta
+const isColor: (value: string) => boolean;
+
+// @beta
+const isObject: (param: unknown) => boolean;
 
 // (No @packageDocumentation comment for this package)
 

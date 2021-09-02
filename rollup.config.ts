@@ -11,7 +11,7 @@ import pkg from './package.json'
 
 const paths = {  
   input: path.join(__dirname, '/src/index.ts'),
-  output: path.join(__dirname, '/lib'),
+  output: path.join(__dirname, '/dist'),
 }
 
 // rollup 配置项

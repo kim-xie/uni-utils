@@ -1,8 +1,8 @@
-import gulp from 'gulp'
+import {series} from 'gulp'
 import path from 'path'
 import fse from 'fs-extra'
 import chalk from 'chalk'
-import { rollup } from 'rollup'
+import {OutputOptions, rollup, RollupOptions} from 'rollup'
 import {
   Extractor,
   ExtractorConfig,
@@ -25,35 +25,32 @@ const log = {
 
 const paths = {
   root: path.join(__dirname, '.'),
-  lib: path.join(__dirname, '/lib'),
+  dist: path.join(__dirname, '/dist'),
 }
 
 
-// 删除 lib 文件
-const clearLibFile: TaskFunc = async (cb) => {
-  fse.removeSync(paths.lib)
-  log.progress('Deleted lib file')
+// 删除 dist 文件
+const clearDistFile: TaskFunc = async (cb) => {
+  fse.removeSync(paths.dist)
+  log.progress('Deleted dist file')
   cb()
 }
 
 // rollup 打包
 const buildByRollup: TaskFunc = async (cb) => {
-  const inputOptions = {
-    input: rollupConfig.input,
-    external: rollupConfig.external,
-    plugins: rollupConfig.plugins,
-  }
-  const outOptions: {file: string, format:any, name:string}[] = rollupConfig.output
-  const bundle = await rollup(inputOptions)
-
+  const outOptions = rollupConfig.output
+  const bundle = await rollup(rollupConfig as RollupOptions)
+  console.log('bundle',bundle)
   // 写入需要遍历输出配置
   if (Array.isArray(outOptions)) {
-    outOptions.forEach(async (outOption) => {
-      await bundle.write(outOption)
+    outOptions.forEach(async(outOption) => {
+      await bundle.write(outOption as OutputOptions)
     })
-    cb()
-    log.progress('Rollup built successfully')
+  }else{
+    await bundle.write(outOptions)
   }
+  cb()
+  log.progress('Rollup built successfully')
 }
 
 // api-extractor 整理 .d.ts 文件
@@ -78,10 +75,10 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
 
   if (extractorResult.succeeded) {
     // 删除多余的 .d.ts 文件
-    const libFiles: string[] = await fse.readdir(paths.lib)
-    libFiles.forEach(async file => {
+    const distFiles: string[] = await fse.readdir(paths.dist)
+    distFiles.forEach(async file => {
       if (file.endsWith('.d.ts') && !file.includes('index')) {
-        await fse.remove(path.join(paths.lib, file))
+        await fse.remove(path.join(paths.dist, file))
       }
     })
     log.progress('API Extractor completed successfully')
@@ -98,11 +95,11 @@ const complete: TaskFunc = (cb) => {
 }
 
 // 构建过程
-// 1. 删除 lib 文件夹
+// 1. 删除 Dist 文件夹
 // 2. rollup 打包
 // 3. api-extractor 生成统一的声明文件, 删除多余的声明文件
 // 4. 完成
-export const build = gulp.series(  apiExtractorGenerate, complete)
+export const build = series(apiExtractorGenerate, complete)
 
 // 自定义生成 changelog
 export const changelog: TaskFunc = async (cb) => {
