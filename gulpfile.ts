@@ -1,69 +1,72 @@
-import {series} from 'gulp'
-import path from 'path'
-import fse from 'fs-extra'
-import chalk from 'chalk'
-import {OutputOptions, rollup, RollupOptions} from 'rollup'
-import {
-  Extractor,
-  ExtractorConfig,
-} from '@microsoft/api-extractor'
-import conventionalChangelog from 'conventional-changelog'
-import rollupConfig from './rollup.config'
+import { series } from 'gulp';
+import path from 'path';
+import fse from 'fs-extra';
+import chalk from 'chalk';
+import { OutputOptions, rollup, RollupOptions } from 'rollup';
+import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
+import conventionalChangelog from 'conventional-changelog';
+import rollupConfig from './rollup.config';
 
 interface TaskFunc {
-  (cb: Function): void
+  (cb: Function): void;
 }
 
 const log = {
   progress: (text: string) => {
-    console.log(chalk.green(text))
+    console.log(chalk.green(text));
   },
   error: (text: string) => {
-    console.log(chalk.red(text))
+    console.log(chalk.red(text));
   },
-}
+};
 
 const paths = {
   root: path.join(__dirname, '.'),
   dist: path.join(__dirname, '/dist'),
-}
-
+};
 
 // 删除 dist 文件
 const clearDistFile: TaskFunc = async (cb) => {
-  fse.removeSync(paths.dist)
-  log.progress('Deleted dist file')
-  cb()
-}
+  fse.removeSync(paths.dist);
+  log.progress('Deleted dist file');
+  cb();
+};
 
 // rollup 打包
 const buildByRollup: TaskFunc = async (cb) => {
-  const outOptions = rollupConfig.output
-  const bundle = await rollup(rollupConfig as RollupOptions)
-  console.log('bundle',bundle)
+  const outOptions = rollupConfig.output;
+  const bundle = await rollup(rollupConfig as RollupOptions);
+  console.log('bundle', bundle);
   // 写入需要遍历输出配置
   if (Array.isArray(outOptions)) {
-    outOptions.forEach(async(outOption) => {
-      await bundle.write(outOption as OutputOptions)
-    })
-  }else{
-    await bundle.write(outOptions)
+    outOptions.forEach(async (outOption) => {
+      await bundle.write(outOption as OutputOptions);
+    });
+  } else {
+    await bundle.write(outOptions);
   }
-  cb()
-  log.progress('Rollup built successfully')
-}
+  cb();
+  log.progress('Rollup built successfully');
+};
 
 // api-extractor 整理 .d.ts 文件
 const apiExtractorGenerate: TaskFunc = async (cb) => {
-  const apiExtractorJsonPath: string = path.join(__dirname, './api-extractor.json')
+  const apiExtractorJsonPath: string = path.join(
+    __dirname,
+    './api-extractor.json',
+  );
   // 加载并解析 api-extractor.json 文件
-  const extractorConfig = await ExtractorConfig.loadFileAndPrepare(apiExtractorJsonPath)
+  const extractorConfig = await ExtractorConfig.loadFileAndPrepare(
+    apiExtractorJsonPath,
+  );
   // 判断是否存在 index.d.ts 文件，这里必须异步先访问一遍，不然后面找不到会报错
-  const isExist: boolean = await fse.pathExists(extractorConfig.mainEntryPointFilePath)
+  const isExist: boolean = await fse.pathExists(
+    extractorConfig.mainEntryPointFilePath,
+  );
 
   if (!isExist) {
-    log.error('API Extractor not find index.d.ts')
-    return
+    log.error('API Extractor not find index.d.ts');
+    return;
   }
 
   // 调用 API
@@ -71,54 +74,56 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
     localBuild: true,
     // 在输出中显示信息
     showVerboseMessages: true,
-  })
+  });
 
   if (extractorResult.succeeded) {
     // 删除多余的 .d.ts 文件
-    const distFiles: string[] = await fse.readdir(paths.dist)
-    distFiles.forEach(async file => {
+    const distFiles: string[] = await fse.readdir(paths.dist);
+    distFiles.forEach(async (file) => {
       if (file.endsWith('.d.ts') && !file.includes('index')) {
-        await fse.remove(path.join(paths.dist, file))
+        await fse.remove(path.join(paths.dist, file));
       }
-    })
-    log.progress('API Extractor completed successfully')
-    cb()
+    });
+    log.progress('API Extractor completed successfully');
+    cb();
   } else {
-    log.error(`API Extractor completed with ${extractorResult.errorCount} errors`
-      + ` and ${extractorResult.warningCount} warnings`)
+    log.error(
+      `API Extractor completed with ${extractorResult.errorCount} errors` +
+        ` and ${extractorResult.warningCount} warnings`,
+    );
   }
-}
+};
 
 const complete: TaskFunc = (cb) => {
-  log.progress('---- end ----')
-  cb()
-}
+  log.progress('---- end ----');
+  cb();
+};
 
 // 构建过程
 // 1. 删除 Dist 文件夹
 // 2. rollup 打包
 // 3. api-extractor 生成统一的声明文件, 删除多余的声明文件
 // 4. 完成
-export const build = series(apiExtractorGenerate, complete)
+export const build = series(apiExtractorGenerate, complete);
 
 // 自定义生成 changelog
 export const changelog: TaskFunc = async (cb) => {
-  const changelogPath: string = path.join(paths.root, 'CHANGELOG.md')
+  const changelogPath: string = path.join(paths.root, 'CHANGELOG.md');
   // 对命令 conventional-changelog -p angular -i CHANGELOG.md -w -r 0
   const changelogPipe = await conventionalChangelog({
     preset: 'angular',
     releaseCount: 0,
-  })
-  changelogPipe.setEncoding('utf8')
+  });
+  changelogPipe.setEncoding('utf8');
 
-  const resultArray = ['# 工具库更新日志\n\n']
-  changelogPipe.on('data', (chunk:any) => {
+  const resultArray = ['# 工具库更新日志\n\n'];
+  changelogPipe.on('data', (chunk: any) => {
     // 原来的 commits 路径是进入提交列表
-    chunk = chunk.replace(/\/commits\//g, '/commit/')
-    resultArray.push(chunk)
-  })
+    chunk = chunk.replace(/\/commits\//g, '/commit/');
+    resultArray.push(chunk);
+  });
   changelogPipe.on('end', async () => {
-    await fse.createWriteStream(changelogPath).write(resultArray.join(''))
-    cb()
-  })
-}
+    await fse.createWriteStream(changelogPath).write(resultArray.join(''));
+    cb();
+  });
+};

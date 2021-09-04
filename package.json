@@ -14,8 +14,11 @@
     "lint:fix": "eslint --fix --ext .js,.ts --format=pretty ./src",
     "changelog": "gulp changelog",
     "version": "yarn changelog && git add CHANGELOG.md",
-    "release": "yarn test && yarn build && np --no-cleanup --yolo --any-branch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "prettier -c --write ./src/*",
+    "commitlint": "commitlint --config commitlint.config.js -e -V",
+    "docs": "api-documenter markdown -i ./temp -o ./docs",
+    "lint-staged": "lint-staged"
   },
   "keywords": [
     "uni",
@@ -25,12 +28,14 @@
   "license": "ISC",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged & jest -u"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
     "*.{.ts,.js}": [
-      "eslint",
+      "prettier --write",
+      "eslint --cache --fix",
       "git add"
     ]
   },
@@ -42,12 +47,15 @@
   ],
   "sideEffects": "false",
   "dependencies": {
-    "@babel/core": "^7.15.0",
-    "typescript": "^4.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-angular": "^13.1.0",
     "@microsoft/api-extractor": "^7.18.7",
+    "@microsoft/api-documenter": "^7.13.44",
+    "typescript": "^4.4.2",
     "@types/conventional-changelog": "^3.1.1",
     "@types/fs-extra": "^9.0.12",
     "@types/gulp": "^4.0.9",
@@ -56,12 +64,16 @@
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "chalk": "^4.1.2",
+    "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^24.4.0",
     "fs-extra": "^10.0.0",
     "gulp": "^4.0.2",
+    "husky": "^7.0.0",
     "jest": "^27.1.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "2.3.2",
     "rollup": "^2.56.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",

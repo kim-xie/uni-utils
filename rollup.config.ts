@@ -1,21 +1,21 @@
-import path from 'path'  
-import rollupTypescript from 'rollup-plugin-typescript2'  
-import babel from 'rollup-plugin-babel'  
-import resolve from 'rollup-plugin-node-resolve'  
-import commonjs from 'rollup-plugin-commonjs'  
-import { eslint } from 'rollup-plugin-eslint'  
-import { DEFAULT_EXTENSIONS } from '@babel/core'
-import { terser } from "rollup-plugin-terser"
+import path from 'path';
+import rollupTypescript from 'rollup-plugin-typescript2';
+import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import { eslint } from 'rollup-plugin-eslint';
+import { DEFAULT_EXTENSIONS } from '@babel/core';
+import { terser } from 'rollup-plugin-terser';
 
-import pkg from './package.json'
+import pkg from './package.json';
 
-const paths = {  
+const paths = {
   input: path.join(__dirname, '/src/index.ts'),
   output: path.join(__dirname, '/dist'),
-}
+};
 
 // rollup 配置项
-const rollupConfig = {  
+const rollupConfig = {
   input: paths.input,
   output: [
     // 输出 commonjs 规范的代码
@@ -58,13 +58,10 @@ const rollupConfig = {
       // 只转换源代码，不运行外部依赖
       exclude: 'node_modules/**',
       // babel 默认不支持 ts 需要手动添加
-      extensions: [
-        ...DEFAULT_EXTENSIONS,
-        '.ts',
-      ],
+      extensions: [...DEFAULT_EXTENSIONS, '.ts'],
     }),
-    terser()
+    terser(),
   ],
-}
+};
 
-export default rollupConfig 
+export default rollupConfig;
