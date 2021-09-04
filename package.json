@@ -25,11 +25,8 @@
   "license": "ISC",
   "lint-staged": {
     "*.{.ts,.js}": [
-      "npm run prettier",
-      "npm run lint"
-    ],
-    "*": [
-      "git add"
+      "yarn prettier",
+      "yarn lint"
     ]
   },
   "files": [
