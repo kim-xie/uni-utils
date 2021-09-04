@@ -15,5 +15,9 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'jest'],
-  rules: {},
+  rules: {
+    'indent': ['error', 2],
+    'no-unused-vars': 'error',
+    'no-console': 'off'
+  },
 };

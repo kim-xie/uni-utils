@@ -1,7 +1,7 @@
-import * as is from './is';
-
 /**
  * 导出包
- * @beta
+ * @public
  */
+import * as is from './is';
+
 export { is };

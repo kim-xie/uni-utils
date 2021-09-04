@@ -1,12 +1,14 @@
 {
-  "name": "uni-utils",
-  "version": "1.0.0",
+  "name": "kim-uni-utils",
+  "version": "1.0.8",
+  "private": false,
   "description": "universal utils",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
-    "build": "rollup --c rollup.config.ts && gulp build && yarn build:docs",
+    "start": "rollup -c rollup.config.ts -w",
+    "build": "rollup -c rollup.config.ts && gulp build && yarn build:docs",
     "api": "api-extractor run",
     "test": "jest --coverage --verbose -u",
     "lint": "eslint --cache --ext .js,.ts --format=pretty ./src",
@@ -15,7 +17,8 @@
     "prettier": "prettier -c --write ./src",
     "commitlint": "commitlint --config commitlint.config.js -e -V",
     "build:docs": "api-documenter markdown -i ./temp -o ./docs",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "release": "npm publish"
   },
   "keywords": [
     "uni",
@@ -23,22 +26,31 @@
   ],
   "author": "kim",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mr-kings/uni-utils.git"
+  },
+  "homepage": "https://github.com/mr-kings/uni-utils#readme",
+  "bugs": {
+    "url": "https://github.com/mr-kings/uni-utils/issues"
+  },
   "lint-staged": {
     "*.{.ts,.js}": [
-      "yarn prettier",
-      "yarn lint"
+      "yarn lint:fix",
+      "yarn prettier"
     ]
   },
   "files": [
     "dist",
-    "LICENSE",
     "CHANGELOG.md",
-    "README.md"
+    "README.md",
+    "package.json"
   ],
   "sideEffects": "false",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-angular": "^13.1.0",
@@ -57,6 +69,7 @@
     "eslint": "^7.32.0",
     "eslint-formatter-pretty": "^4.1.0",
     "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "fs-extra": "^10.0.0",
     "gulp": "^4.0.2",
     "husky": "^7.0.0",

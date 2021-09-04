@@ -38,8 +38,8 @@ const rollupConfig = {
     eslint({
       throwOnError: true, // lint 结果有错误将会抛出异常
       throwOnWarning: true,
-      include: ['src/*.ts'],
-      exclude: ['node_modules/**', 'lib/**', '*.js'],
+      include: ['src/*.ts', 'scripts/*'],
+      exclude: ['node_modules/**', 'dist/**'],
     }),
 
     // 使得 rollup 支持 commonjs 规范，识别 commonjs 规范的依赖
@@ -52,7 +52,11 @@ const rollupConfig = {
         moduleDirectory: 'node_modules',
       },
     }),
+
+    // ts处理  .ts -> tsc -> babel -> es5
     rollupTypescript(),
+
+    // babel处理
     babel({
       runtimeHelpers: true,
       // 只转换源代码，不运行外部依赖
@@ -60,6 +64,8 @@ const rollupConfig = {
       // babel 默认不支持 ts 需要手动添加
       extensions: [...DEFAULT_EXTENSIONS, '.ts'],
     }),
+
+    // 代码压缩
     terser(),
   ],
 };

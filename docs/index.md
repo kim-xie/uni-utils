@@ -8,5 +8,5 @@
 
 |  Package | Description |
 |  --- | --- |
-|  [uni-utils](./uni-utils.md) |  |
+|  [kim-uni-utils](./kim-uni-utils.md) |  |
 

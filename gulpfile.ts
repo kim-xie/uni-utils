@@ -2,10 +2,8 @@ import { series } from 'gulp';
 import path from 'path';
 import fse from 'fs-extra';
 import chalk from 'chalk';
-import { OutputOptions, rollup, RollupOptions } from 'rollup';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import conventionalChangelog from 'conventional-changelog';
-import rollupConfig from './rollup.config';
 
 interface TaskFunc {
   (cb: Function): void;
@@ -23,30 +21,6 @@ const log = {
 const paths = {
   root: path.join(__dirname, '.'),
   dist: path.join(__dirname, '/dist'),
-};
-
-// 删除 dist 文件
-const clearDistFile: TaskFunc = async (cb) => {
-  fse.removeSync(paths.dist);
-  log.progress('Deleted dist file');
-  cb();
-};
-
-// rollup 打包
-const buildByRollup: TaskFunc = async (cb) => {
-  const outOptions = rollupConfig.output;
-  const bundle = await rollup(rollupConfig as RollupOptions);
-  console.log('bundle', bundle);
-  // 写入需要遍历输出配置
-  if (Array.isArray(outOptions)) {
-    outOptions.forEach(async (outOption) => {
-      await bundle.write(outOption as OutputOptions);
-    });
-  } else {
-    await bundle.write(outOptions);
-  }
-  cb();
-  log.progress('Rollup built successfully');
 };
 
 // api-extractor 整理 .d.ts 文件
@@ -99,11 +73,7 @@ const complete: TaskFunc = (cb) => {
   cb();
 };
 
-// 构建过程
-// 1. 删除 Dist 文件夹
-// 2. rollup 打包
-// 3. api-extractor 生成统一的声明文件, 删除多余的声明文件
-// 4. 完成
+// api-extractor 生成统一的声明文件, 删除多余的声明文件
 export const build = series(apiExtractorGenerate, complete);
 
 // 自定义生成 changelog
