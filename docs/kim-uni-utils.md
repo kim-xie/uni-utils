@@ -8,5 +8,6 @@
 
 |  Namespace | Description |
 |  --- | --- |
+|  [image](./kim-uni-utils.image.md) |  |
 |  [is](./kim-uni-utils.is.md) |  |
 

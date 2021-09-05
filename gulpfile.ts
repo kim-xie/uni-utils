@@ -1,9 +1,9 @@
-import { series } from 'gulp';
-import path from 'path';
-import fse from 'fs-extra';
-import chalk from 'chalk';
-import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
-import conventionalChangelog from 'conventional-changelog';
+import { series } from 'gulp'
+import path from 'path'
+import fse from 'fs-extra'
+import chalk from 'chalk'
+import { Extractor, ExtractorConfig } from '@microsoft/api-extractor'
+import conventionalChangelog from 'conventional-changelog'
 
 interface TaskFunc {
   (cb: Function): void;

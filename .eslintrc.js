@@ -18,6 +18,9 @@ module.exports = {
   rules: {
     'indent': ['error', 2],
     'no-unused-vars': 'error',
-    'no-console': 'off'
+    'no-console': 'off',
+    '@typescript-eslint/no-var-requires': 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
 };
