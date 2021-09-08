@@ -10,7 +10,7 @@
  *
  * @public
  */
-export const isObject = (param: unknown): boolean =>
+export const isObject = (param) =>
   Object.prototype.toString.call(param) === '[object Object]';
 
 /**

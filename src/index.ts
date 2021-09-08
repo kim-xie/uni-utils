@@ -1,6 +1,4 @@
 /**
- * 导出包集合
- *
  * @packageDocumentation
  */
 import * as is from './is';
