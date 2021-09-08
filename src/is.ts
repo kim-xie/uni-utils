@@ -1,6 +1,6 @@
 /**
- * A library for is utils.
- * 
+ * is工具类
+ *
  * @packageDocumentation
  */
 /**
@@ -36,3 +36,32 @@ export const isArray = (param: unknown): boolean =>
  */
 export const isColor = (value: string): boolean =>
   /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value);
+
+/**
+ * 获取值的类型标签
+ * @param value - 任意值
+ * @returns [object Xxxx]
+ *
+ * @public
+ */
+export const getTag = (value: any): string => {
+  if (value == null) {
+    return value === undefined ? '[object Undefined]' : '[object Null]';
+  }
+  return toString.call(value);
+};
+
+/**
+ * 判断是否是数值类型
+ * @param value - 任意值
+ * @returns true / false
+ * @example
+ * ```ts
+ * isNumber(2) // => true
+ * ```
+ *
+ * @public
+ */
+export const isNumber = (value: any): boolean => {
+  return getTag(value) === '[object Number]';
+};

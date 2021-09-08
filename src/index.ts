@@ -1,9 +1,9 @@
 /**
  * 导出包集合
- * 
- * @public
+ *
+ * @packageDocumentation
  */
 import * as is from './is';
-import * as image from './image'
+// import * as image from './image';
 
-export { is, image };
+export { is };

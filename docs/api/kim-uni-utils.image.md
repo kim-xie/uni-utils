@@ -15,6 +15,5 @@
 |  [IMG\_REGEXP](./kim-uni-utils.image.img_regexp.md) | 支持压缩的图片格式 |
 |  [RandomHeader](./kim-uni-utils.image.randomheader.md) | 图片压缩网站请求头 |
 |  [RoundNum](./kim-uni-utils.image.roundnum.md) | 四舍五入 |
-|  [TINYIMG\_URL](./kim-uni-utils.image.tinyimg_url.md) | 在线压缩网站 |
 |  [uploadImg](./kim-uni-utils.image.uploadimg.md) | 图片压缩后下载 |
 

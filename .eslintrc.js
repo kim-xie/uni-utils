@@ -3,9 +3,10 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
+    jest: true,
   },
   extends: [
-    'eslint:recommended',
+    'prettier',
     'plugin:@typescript-eslint/recommended',
     'plugin:jest/recommended',
   ],
@@ -14,13 +15,15 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'jest'],
+  settings: {
+    jest: { version: 26 },
+  },
+  plugins: ['@typescript-eslint', 'jest', 'prettier'],
   rules: {
-    'indent': ['error', 2],
     'no-unused-vars': 'error',
     'no-console': 'off',
     '@typescript-eslint/no-var-requires': 0,
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 };

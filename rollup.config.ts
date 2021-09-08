@@ -6,6 +6,9 @@ import commonjs from 'rollup-plugin-commonjs';
 import { eslint } from 'rollup-plugin-eslint';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { terser } from 'rollup-plugin-terser';
+// 按需打包nodejs内置模块
+import builtins from 'rollup-plugin-node-builtins';
+// import globals from 'rollup-plugin-node-globals';
 
 import pkg from './package.json';
 
@@ -31,26 +34,16 @@ const rollupConfig = {
       name: pkg.name,
     },
   ],
-  external: [], // 指出应将哪些模块视为外部模块，如 Peer dependencies 中的依赖
   // plugins 需要注意引用顺序
   plugins: [
+    // globals(),
+    builtins(),
     // 验证导入的文件
     eslint({
       throwOnError: true, // lint 结果有错误将会抛出异常
       throwOnWarning: true,
       include: ['src/*.ts', 'scripts/*'],
-      exclude: ['node_modules/**', 'dist/**'],
-    }),
-
-    // 使得 rollup 支持 commonjs 规范，识别 commonjs 规范的依赖
-    commonjs(),
-
-    // 配合 commnjs 解析第三方模块
-    resolve({
-      // 将自定义选项传递给解析插件
-      customResolveOptions: {
-        moduleDirectory: 'node_modules',
-      },
+      exclude: ['node_modules/**', 'dist/**', 'test/**'],
     }),
 
     // ts处理  .ts -> tsc -> babel -> es5
@@ -63,6 +56,17 @@ const rollupConfig = {
       exclude: 'node_modules/**',
       // babel 默认不支持 ts 需要手动添加
       extensions: [...DEFAULT_EXTENSIONS, '.ts'],
+    }),
+
+    // 使得 rollup 支持 commonjs 规范，识别 commonjs 规范的依赖
+    commonjs(),
+
+    // 配合 commnjs 解析第三方模块
+    resolve({
+      // 将自定义选项传递给解析插件
+      customResolveOptions: {
+        moduleDirectory: 'node_modules',
+      },
     }),
 
     // 代码压缩

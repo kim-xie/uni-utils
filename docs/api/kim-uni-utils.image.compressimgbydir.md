@@ -9,8 +9,8 @@
 <b>Signature:</b>
 
 ```typescript
-compressImgByDir: ({ dirPath, outputPath, isRecursion, showLog, }: {
-    dirPath: string;
+compressImgByDir: ({ inputPath, outputPath, isRecursion, showLog, }: {
+    inputPath: string;
     outputPath: string;
     isRecursion?: boolean | undefined;
     showLog?: boolean | undefined;

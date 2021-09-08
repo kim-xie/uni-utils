@@ -8,7 +8,9 @@
 
 |  Variable | Description |
 |  --- | --- |
+|  [getTag](./kim-uni-utils.is.gettag.md) | 获取值的类型标签 |
 |  [isArray](./kim-uni-utils.is.isarray.md) | 判断是否是数组数据类型 |
 |  [isColor](./kim-uni-utils.is.iscolor.md) | 判断字符串是否是十六进制的颜色值 |
+|  [isNumber](./kim-uni-utils.is.isnumber.md) | 判断是否是数值类型 |
 |  [isObject](./kim-uni-utils.is.isobject.md) | 判断是否是数组对象类型 |
 
