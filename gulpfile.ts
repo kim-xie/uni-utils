@@ -1,13 +1,12 @@
-import { series } from 'gulp'
-import path from 'path'
-import fse from 'fs-extra'
-import chalk from 'chalk'
-import { Extractor, ExtractorConfig } from '@microsoft/api-extractor'
-import conventionalChangelog from 'conventional-changelog'
+import gulp from 'gulp';
+import path from 'path';
+import fse from 'fs-extra';
+import chalk from 'chalk';
+import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
+import conventionalChangelog from 'conventional-changelog';
 
-interface TaskFunc {
-  (cb: Function): void;
-}
+// eslint-disable-next-line no-unused-vars
+type TaskFunc = (cb: () => void) => void;
 
 const log = {
   progress: (text: string) => {
@@ -20,7 +19,7 @@ const log = {
 
 const paths = {
   root: path.join(__dirname, '.'),
-  dist: path.join(__dirname, '/dist'),
+  types: path.join(__dirname, '/dist'),
 };
 
 // api-extractor 整理 .d.ts 文件
@@ -52,10 +51,10 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
 
   if (extractorResult.succeeded) {
     // 删除多余的 .d.ts 文件
-    const distFiles: string[] = await fse.readdir(paths.dist);
-    distFiles.forEach(async (file) => {
+    const typesFiles: string[] = await fse.readdir(paths.types);
+    typesFiles.forEach(async (file) => {
       if (file.endsWith('.d.ts') && !file.includes('index')) {
-        await fse.remove(path.join(paths.dist, file));
+        await fse.remove(path.join(paths.types, file));
       }
     });
     log.progress('API Extractor completed successfully');
@@ -74,7 +73,7 @@ const complete: TaskFunc = (cb) => {
 };
 
 // api-extractor 生成统一的声明文件, 删除多余的声明文件
-export const build = series(apiExtractorGenerate, complete);
+export const build = gulp.series(apiExtractorGenerate, complete);
 
 // 自定义生成 changelog
 export const changelog: TaskFunc = async (cb) => {

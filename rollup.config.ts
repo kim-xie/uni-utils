@@ -7,7 +7,7 @@ import { eslint } from 'rollup-plugin-eslint';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { terser } from 'rollup-plugin-terser';
 // 按需打包nodejs内置模块
-import builtins from 'rollup-plugin-node-builtins';
+// import builtins from 'rollup-plugin-node-builtins';
 // import globals from 'rollup-plugin-node-globals';
 
 import pkg from './package.json';
@@ -23,21 +23,26 @@ const rollupConfig = {
   output: [
     // 输出 commonjs 规范的代码
     {
-      file: path.join(paths.output, 'index.js'),
+      file: pkg.main,
       format: 'cjs',
       name: pkg.name,
     },
     // 输出 es 规范的代码
     {
-      file: path.join(paths.output, 'index.esm.js'),
+      file: pkg.module,
       format: 'es',
+      name: pkg.name,
+    },
+    {
+      file: pkg.browser,
+      format: 'umd',
       name: pkg.name,
     },
   ],
   // plugins 需要注意引用顺序
   plugins: [
     // globals(),
-    builtins(),
+    // builtins(),
     // 验证导入的文件
     eslint({
       throwOnError: true, // lint 结果有错误将会抛出异常

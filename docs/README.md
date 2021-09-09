@@ -1,12 +1,8 @@
 ---
 home: true
 heroText: 'kim-uni-utils'
-heroImage: https://vuejs.org/images/logo.png
-tagline: Personal JavaScript Utils, Don't Repeat Yourself
-actionText: Get Start
+tagline: TypeScript Utils 包, 持续维护更新, 方便日常开发
+actionText: 快速上手
 actionLink: /guide/
-features:
-  - title: 持续迭代
-    details: 持续维护更新，方便日常开发
 footer: MIT Licensed | Copyright © 20121-present kim
 ---

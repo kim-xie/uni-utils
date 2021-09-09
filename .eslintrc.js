@@ -20,7 +20,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'jest', 'prettier'],
   rules: {
-    'no-unused-vars': 'error',
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     'no-console': 'off',
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/explicit-module-boundary-types': 'off',

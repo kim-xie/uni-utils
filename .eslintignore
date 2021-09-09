@@ -1,2 +1,5 @@
-test/**
-types/**
+test/
+types/
+dist/
+node_modules/
+coverage/

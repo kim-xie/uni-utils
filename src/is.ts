@@ -3,6 +3,7 @@
  *
  * @packageDocumentation
  */
+
 /**
  * 判断是否是数组对象类型
  * @param param - input string
@@ -10,7 +11,7 @@
  *
  * @public
  */
-export const isObject = (param) =>
+export const isObject = (param: unknown): boolean =>
   Object.prototype.toString.call(param) === '[object Object]';
 
 /**

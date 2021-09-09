@@ -4,12 +4,10 @@
 
 ## kim-uni-utils package
 
-导出包集合
 
 ## Namespaces
 
 |  Namespace | Description |
 |  --- | --- |
-|  [image](./kim-uni-utils.image.md) |  |
 |  [is](./kim-uni-utils.is.md) |  |
 

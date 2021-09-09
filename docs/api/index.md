@@ -8,5 +8,5 @@
 
 |  Package | Description |
 |  --- | --- |
-|  [kim-uni-utils](./kim-uni-utils.md) | 导出包集合 |
+|  [kim-uni-utils](./kim-uni-utils.md) |  |
 
