@@ -1,6 +1,6 @@
 {
   "name": "kim-uni-utils",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "private": false,
   "description": "universal utils",
   "main": "dist/bundle.js",
@@ -21,7 +21,7 @@
     "build:docs": "api-documenter markdown -i ./temp -o ./docs/api",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "lint-staged": "lint-staged",
+    "preCommit": "lint-staged",
     "release": "npm publish"
   },
   "keywords": [
@@ -40,8 +40,9 @@
   },
   "lint-staged": {
     "src/*.{ts,js}": [
-      "npm run prettier",
-      "npm run tslint:fix"
+      "prettier --write",
+      "tslint --fix ./src/*.ts",
+      "git add"
     ]
   },
   "files": [

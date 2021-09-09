@@ -1,12 +1,13 @@
 # 工具库更新日志
 
-## 1.1.8 (2021-09-09)
+## 1.1.9 (2021-09-09)
 
 
 ### Bug Fixes
 
 * 工程初始化 ([6c12c5c](https://github.com/mr-kings/uni-utils/commit/6c12c5c64a0d7ef307ac064e15dd9a5c1a49d953))
 * 工程初始化 ([63831dd](https://github.com/mr-kings/uni-utils/commit/63831dd5d5e9a94597184ca7b35a6d2b9af13d9f))
+* 工程初始化完毕 ([37b2df2](https://github.com/mr-kings/uni-utils/commit/37b2df2bfef7f274d971f197f17f5046610f5cdb))
 * 接入发布流程 ([9757911](https://github.com/mr-kings/uni-utils/commit/9757911a4ab45004c47ca778184af6c8fa8a0ed3))
 * 接入文档 ([702a038](https://github.com/mr-kings/uni-utils/commit/702a038ff231fdd424e861e87edd029aba09682b))
 * 接入文档 ([b2344bc](https://github.com/mr-kings/uni-utils/commit/b2344bcfc716c685427c2d8da52ae9720c004692))

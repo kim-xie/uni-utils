@@ -5,10 +5,21 @@
  */
 
 /**
- * 判断是否是数组对象类型
- * @param param - input string
- * @returns 返参
+ * 判断是否是对象类型
+ * @param param - 入参
+ * @returns 返参 Boolean
  *
+ * @example 判断某个元素是否是对象类型
+ *
+ * # Usage
+ * ```ts
+ * const result = isObject({"key": "value"});
+ * ```
+ *
+ * # Result
+ * ```ts
+ * result === true
+ * ```
  * @public
  */
 export const isObject = (param: unknown): boolean =>
@@ -35,8 +46,7 @@ export const isArray = (param: unknown): boolean =>
  * ```
  * @public
  */
-export const isColor = (value: string): boolean =>
-  /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value);
+export const isColor = (value: string): boolean => /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value);
 
 /**
  * 获取值的类型标签

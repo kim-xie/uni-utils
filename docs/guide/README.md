@@ -33,3 +33,17 @@ console.log(is.isArray([1,2,3]))
   console.log(kim-uni-utils.is.isArray([1,2,3]))
 </script>
 ```
+
+## 2、开发指南
+
+#### 1、工程按功能模块进行划分 (如：图片相关: src/image.ts, 环境相关：src/env.ts)
+
+#### 2、对方法进行必要的注释 (请参考 tsdoc 注释模板 [API](https://tsdoc.org/pages/tags/alpha/))
+
+#### 3、开发时遵循统一标准规范（tslint\eslint\prettier）
+
+#### 4、进行必要的单元测试（test/X.X.ts）
+
+#### 5、npm run docs:dev 查看对应生成文档
+
+#### 6、遵循@commitlint/config-angular 代码提交规范

@@ -4,10 +4,26 @@
 
 ## is.isObject variable
 
-判断是否是数组对象类型
+判断是否是对象类型
 
 <b>Signature:</b>
 
 ```typescript
 isObject: (param: unknown) => boolean
 ```
+
+## Example
+
+判断某个元素是否是对象类型
+
+\# Usage
+
+```ts
+const result = isObject({"key": "value"});
+```
+\# Result
+
+```ts
+result === true
+```
+
