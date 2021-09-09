@@ -39,7 +39,7 @@
     "url": "https://github.com/mr-kings/uni-utils/issues"
   },
   "lint-staged": {
-    "src/*.{.ts,.js}": [
+    "src/*{.ts,.js}": [
       "npm run prettier",
       "npm run tslint:fix"
     ]
