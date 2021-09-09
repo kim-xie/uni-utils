@@ -1,5 +1,5 @@
 /**
- * is工具类
+ * is相关工具类
  *
  * @packageDocumentation
  */
