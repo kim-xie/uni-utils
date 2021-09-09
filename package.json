@@ -39,7 +39,7 @@
     "url": "https://github.com/mr-kings/uni-utils/issues"
   },
   "lint-staged": {
-    "src/*{.ts,.js}": [
+    "src/*.{ts,js}": [
       "npm run prettier",
       "npm run tslint:fix"
     ]
@@ -73,8 +73,6 @@
     "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
-    "chalk": "^4.1.2",
-    "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
