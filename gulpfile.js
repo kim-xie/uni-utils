@@ -8,10 +8,10 @@ const typedoc = require('gulp-typedoc');
 const browserSync = require('browser-sync').create();
 
 const log = {
-  progress: (text) => {
+  progress: text => {
     console.log(chalk.green(text));
   },
-  error: (text) => {
+  error: text => {
     console.log(chalk.red(text));
   },
 };
@@ -78,7 +78,7 @@ export const changelog = async cb => {
   changelogPipe.setEncoding('utf8');
 
   const resultArray = ['# 工具库更新日志\n\n'];
-  changelogPipe.on('data', (chunk) => {
+  changelogPipe.on('data', chunk => {
     // 原来的 commits 路径是进入提交列表
     chunk = chunk.replace(/\/commits\//g, '/commit/');
     resultArray.push(chunk);
