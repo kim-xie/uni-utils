@@ -23,8 +23,7 @@ export const isWeb = typeof window !== 'undefined' && 'onload' in window;
  * 判断是否是node环境
  * @public
  */
-export const isNode =
-  typeof process !== 'undefined' && !!(process.versions && process.versions.node);
+export const isNode = typeof process !== 'undefined' && !!(process.versions && process.versions.node);
 
 /**
  * 判断是否是weex环境
@@ -35,15 +34,13 @@ export const isWeex = typeof WXEnvironment !== 'undefined' && WXEnvironment.plat
  * 判断是否是阿里小程序
  * @public
  */
-export const isMiniApp =
-  typeof my !== 'undefined' && my !== null && typeof my.alert !== 'undefined';
+export const isMiniApp = typeof my !== 'undefined' && my !== null && typeof my.alert !== 'undefined';
 
 /**
  * 判断是否是字节小程序
  * @public
  */
-export const isByteDanceMicroApp =
-  typeof tt !== 'undefined' && tt !== null && typeof tt.showToast !== 'undefined';
+export const isByteDanceMicroApp = typeof tt !== 'undefined' && tt !== null && typeof tt.showToast !== 'undefined';
 
 /**
  * 判断是否是百度小程序
@@ -56,8 +53,7 @@ export const isBaiduSmartProgram =
  * 判断是否是快手小程序
  * @public
  */
-export const isKuaiShouMiniProgram =
-  typeof ks !== 'undefined' && ks !== null && typeof ks.showToast !== 'undefined';
+export const isKuaiShouMiniProgram = typeof ks !== 'undefined' && ks !== null && typeof ks.showToast !== 'undefined';
 
 /**
  * 判断是否是微信小程序
@@ -81,7 +77,4 @@ export const isWeChatMiniProgram =
  * @public
  */
 export const isQuickApp =
-  typeof global !== 'undefined' &&
-  global !== null &&
-  typeof global.callNative !== 'undefined' &&
-  !isWeex;
+  typeof global !== 'undefined' && global !== null && typeof global.callNative !== 'undefined' && !isWeex;

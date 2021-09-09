@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 import assert from 'assert';
 import { isArray } from '../src/is';
 

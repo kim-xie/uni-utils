@@ -3,11 +3,12 @@
     [
       "@babel/preset-env",
       {
-        "modules": false,
+        "modules": false, // 🈲此模块转成 CommonJS
         "useBuiltIns": "usage",
         "corejs": 3
       }
-    ]
+    ],
+    ["@babel/preset-typescript"]
   ],
   "plugins": [
     ["@babel/plugin-transform-runtime",{

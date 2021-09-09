@@ -4,15 +4,14 @@ import fse from 'fs-extra';
 import chalk from 'chalk';
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 import conventionalChangelog from 'conventional-changelog';
-
-// eslint-disable-next-line no-unused-vars
-type TaskFunc = (cb: () => void) => void;
+const typedoc = require('gulp-typedoc');
+const browserSync = require('browser-sync').create();
 
 const log = {
-  progress: (text: string) => {
+  progress: (text) => {
     console.log(chalk.green(text));
   },
-  error: (text: string) => {
+  error: (text) => {
     console.log(chalk.red(text));
   },
 };
@@ -23,19 +22,12 @@ const paths = {
 };
 
 // api-extractor 整理 .d.ts 文件
-const apiExtractorGenerate: TaskFunc = async (cb) => {
-  const apiExtractorJsonPath: string = path.join(
-    __dirname,
-    './api-extractor.json',
-  );
+const apiExtractorGenerate = async cb => {
+  const apiExtractorJsonPath = path.join(__dirname, './api-extractor.json');
   // 加载并解析 api-extractor.json 文件
-  const extractorConfig = await ExtractorConfig.loadFileAndPrepare(
-    apiExtractorJsonPath,
-  );
+  const extractorConfig = await ExtractorConfig.loadFileAndPrepare(apiExtractorJsonPath);
   // 判断是否存在 index.d.ts 文件，这里必须异步先访问一遍，不然后面找不到会报错
-  const isExist: boolean = await fse.pathExists(
-    extractorConfig.mainEntryPointFilePath,
-  );
+  const isExist = await fse.pathExists(extractorConfig.mainEntryPointFilePath);
 
   if (!isExist) {
     log.error('API Extractor not find index.d.ts');
@@ -51,8 +43,8 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
 
   if (extractorResult.succeeded) {
     // 删除多余的 .d.ts 文件
-    const typesFiles: string[] = await fse.readdir(paths.types);
-    typesFiles.forEach(async (file) => {
+    const typesFiles = await fse.readdir(paths.types);
+    typesFiles.forEach(async file => {
       if (file.endsWith('.d.ts') && !file.includes('index')) {
         await fse.remove(path.join(paths.types, file));
       }
@@ -67,17 +59,17 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
   }
 };
 
-const complete: TaskFunc = (cb) => {
+const complete = cb => {
   log.progress('---- end ----');
   cb();
 };
 
 // api-extractor 生成统一的声明文件, 删除多余的声明文件
-export const build = gulp.series(apiExtractorGenerate, complete);
+export const buildApi = gulp.series(apiExtractorGenerate, complete);
 
 // 自定义生成 changelog
-export const changelog: TaskFunc = async (cb) => {
-  const changelogPath: string = path.join(paths.root, 'CHANGELOG.md');
+export const changelog = async cb => {
+  const changelogPath = path.join(paths.root, 'CHANGELOG.md');
   // 对命令 conventional-changelog -p angular -i CHANGELOG.md -w -r 0
   const changelogPipe = await conventionalChangelog({
     preset: 'angular',
@@ -86,7 +78,7 @@ export const changelog: TaskFunc = async (cb) => {
   changelogPipe.setEncoding('utf8');
 
   const resultArray = ['# 工具库更新日志\n\n'];
-  changelogPipe.on('data', (chunk: any) => {
+  changelogPipe.on('data', (chunk) => {
     // 原来的 commits 路径是进入提交列表
     chunk = chunk.replace(/\/commits\//g, '/commit/');
     resultArray.push(chunk);
@@ -96,3 +88,29 @@ export const changelog: TaskFunc = async (cb) => {
     cb();
   });
 };
+
+const runTypeDoc = () =>
+  gulp.src(['src']).pipe(
+    typedoc({
+      out: './typedocs',
+      tsconfig: 'tsconfig.json',
+    }),
+  );
+
+const reload = done => {
+  browserSync.reload();
+  done();
+};
+
+const runBrowserSync = done => {
+  browserSync.init({
+    server: {
+      baseDir: './typedocs',
+    },
+  });
+  done();
+};
+
+const watch = () => gulp.watch(['README.md', 'src/*.ts'], gulp.series(runTypeDoc, reload));
+
+export const buildTypeDoc = gulp.series(runTypeDoc, runBrowserSync, watch);

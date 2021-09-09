@@ -1,5 +1,6 @@
-test/
-types/
-dist/
-node_modules/
-coverage/
+test/**
+types/**
+dist/**
+node_modules/**
+coverage/**
+.husky/**

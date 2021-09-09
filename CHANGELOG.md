@@ -17,6 +17,7 @@
 * 接入文档 ([a21166a](https://github.com/mr-kings/uni-utils/commit/a21166a9e87fe7339fe7875d79f43dc8ca39a81b))
 * 修复lint-staged问题 ([81d4485](https://github.com/mr-kings/uni-utils/commit/81d4485f80b926364f9b88da4bd3ea4ace909372))
 * 修复lint-staged问题 ([9652b01](https://github.com/mr-kings/uni-utils/commit/9652b0144b14992777138f9d74241cdaabb29f81))
+* readme ([ade761a](https://github.com/mr-kings/uni-utils/commit/ade761ade91e4d91e10498704b7c3f741ddd7847))
 
 
 ### Features

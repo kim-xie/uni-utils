@@ -12,18 +12,20 @@
  * @example 判断某个元素是否是对象类型
  *
  * # Usage
+ *
  * ```ts
  * const result = isObject({"key": "value"});
  * ```
  *
  * # Result
+ *
  * ```ts
  * result === true
  * ```
+ * @author kim
  * @public
  */
-export const isObject = (param: unknown): boolean =>
-  Object.prototype.toString.call(param) === '[object Object]';
+export const isObject = (param: unknown): boolean => Object.prototype.toString.call(param) === '[object Object]';
 
 /**
  * 判断是否是数组数据类型
@@ -32,8 +34,7 @@ export const isObject = (param: unknown): boolean =>
  *
  * @public
  */
-export const isArray = (param: unknown): boolean =>
-  Object.prototype.toString.call(param) === '[object Array]';
+export const isArray = (param: unknown): boolean => Object.prototype.toString.call(param) === '[object Array]';
 
 /**
  * 判断字符串是否是十六进制的颜色值
@@ -46,7 +47,7 @@ export const isArray = (param: unknown): boolean =>
  * ```
  * @public
  */
-export const isColor = (value: string): boolean => /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value);
+export const isColor = (value: any): boolean => /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value);
 
 /**
  * 获取值的类型标签
