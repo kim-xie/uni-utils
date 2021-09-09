@@ -9,5 +9,6 @@
 
 |  Namespace | Description |
 |  --- | --- |
+|  [env](./kim-uni-utils.env.md) |  |
 |  [is](./kim-uni-utils.is.md) |  |
 

@@ -53,8 +53,7 @@
   ],
   "sideEffects": "false",
   "dependencies": {
-    "chokidar": "^3.5.2",
-    "figures": "^4.0.0"
+
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

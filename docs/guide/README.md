@@ -44,6 +44,8 @@ console.log(is.isArray([1,2,3]))
 
 #### 4、进行必要的单元测试（test/X.X.ts）
 
-#### 5、npm run docs:dev 查看对应生成文档
+#### 5、npm run build 生成文档
 
-#### 6、遵循@commitlint/config-angular 代码提交规范
+#### 6、npm run docs:dev 查看对应生成文档
+
+#### 7、遵循@commitlint/config-angular 代码提交规范
