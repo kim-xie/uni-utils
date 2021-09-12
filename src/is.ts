@@ -22,10 +22,11 @@
  * ```ts
  * result === true
  * ```
- * @author kim
+ *
  * @public
  */
-export const isObject = (param: unknown): boolean => Object.prototype.toString.call(param) === '[object Object]';
+export const isObject = (param: unknown) =>
+  Object.prototype.toString.call(param) === '[object Object]'
 
 /**
  * 判断是否是数组数据类型
@@ -34,7 +35,8 @@ export const isObject = (param: unknown): boolean => Object.prototype.toString.c
  *
  * @public
  */
-export const isArray = (param: unknown): boolean => Object.prototype.toString.call(param) === '[object Array]';
+export const isArray = (param: unknown): boolean =>
+  Object.prototype.toString.call(param) === '[object Array]'
 
 /**
  * 判断字符串是否是十六进制的颜色值
@@ -47,7 +49,7 @@ export const isArray = (param: unknown): boolean => Object.prototype.toString.ca
  * ```
  * @public
  */
-export const isColor = (value: any): boolean => /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value);
+export const isColor = (value: string): boolean => /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(value)
 
 /**
  * 获取值的类型标签
@@ -56,12 +58,12 @@ export const isColor = (value: any): boolean => /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3
  *
  * @public
  */
-export const getTag = (value: any): string => {
+export const getTag = (value: unknown): string => {
   if (value == null) {
-    return value === undefined ? '[object Undefined]' : '[object Null]';
+    return value === undefined ? '[object Undefined]' : '[object Null]'
   }
-  return toString.call(value);
-};
+  return toString.call(value)
+}
 
 /**
  * 判断是否是数值类型
@@ -74,6 +76,4 @@ export const getTag = (value: any): string => {
  *
  * @public
  */
-export const isNumber = (value: any): boolean => {
-  return getTag(value) === '[object Number]';
-};
+export const isNumber = (value: unknown): boolean => getTag(value) === '[object Number]'

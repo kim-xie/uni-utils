@@ -9,5 +9,5 @@
 <b>Signature:</b>
 
 ```typescript
-getTag: (value: any) => string
+getTag: (value: unknown) => string
 ```

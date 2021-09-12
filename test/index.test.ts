@@ -1,11 +1,8 @@
-/* eslint-disable jest/expect-expect */
-import assert from 'assert';
-import { isArray } from '../src/is';
+import { describe, test, expect } from '@jest/globals'
+import { isArray } from '../src/is'
 
-describe('validate:', () => {
-  describe('isArray', () => {
-    test('return true', () => {
-      assert.strictEqual(isArray('rollup'), false);
-    });
-  });
-});
+describe('validate: isArray', () => {
+  test('rollup string isArray', () => {
+    expect(isArray('rollup')).toBe(false)
+  })
+})

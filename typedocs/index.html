@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>kim-uni-utils</title>
+	<meta name="description" content="Documentation for kim-uni-utils">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">kim-uni-utils</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>kim-uni-utils</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#介绍" id="介绍" style="color: inherit; text-decoration: none;">
+					<h1>介绍</h1>
+				</a>
+				<p>kim-uni-utils 是一个 TypeScript Utils 包</p>
+				<a href="#1-如何使用" id="1-如何使用" style="color: inherit; text-decoration: none;">
+					<h2>1. 如何使用</h2>
+				</a>
+				<p><strong>安装:</strong></p>
+				<pre><code class="language-shell"><span style="color: #000000">yarn add kim-uni-utils</span>
+</code></pre>
+				<p>or</p>
+				<pre><code class="language-shell"><span style="color: #000000">npm install kim-uni-utils</span>
+</code></pre>
+				<p><strong>三种使用方式:</strong></p>
+				<pre><code class="language-js"><span style="color: #008000">// 方式1: import</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">is</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;kim-uni-utils&#039;</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">is</span><span style="color: #000000">.</span><span style="color: #795E26">isArray</span><span style="color: #000000">([</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">]))</span>
+
+<span style="color: #008000">// 方式2: require</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">is</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;kim-uni-utils&#039;</span><span style="color: #000000">)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">is</span><span style="color: #000000">.</span><span style="color: #795E26">isArray</span><span style="color: #000000">([</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">]))</span>
+
+<span style="color: #008000">// 方式3: 在 HTML 文件中使用 script 标签加载，此时会在 window 上挂载一个 kim-uni-utils 的变量</span>
+<span style="color: #800000">&lt;script</span><span style="color: #000000"> </span><span style="color: #FF0000">src</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;node_modules/kim-uni-utils/dist/bundle.browser.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+<span style="color: #800000">&lt;script&gt;</span>
+<span style="color: #000000">  console.log(kim-uni-utils.is.isArray([1,2,3]))</span>
+<span style="color: #800000">&lt;/script&gt;</span>
+</code></pre>
+				<a href="#2、开发指南" id="2、开发指南" style="color: inherit; text-decoration: none;">
+					<h2>2、开发指南</h2>
+				</a>
+				<p>1、工程按功能模块进行划分 (如：图片相关: src/image.ts, 环境相关：src/env.ts)</p>
+				<p>2、对方法进行必要的注释 (请参考 tsdoc 注释模板 <a href="https://tsdoc.org/pages/tags/alpha/">API</a>)</p>
+				<p>3、开发时遵循统一标准规范（editorconfig\eslint\prettier）</p>
+				<p>4、进行必要的单元测试（test/X.X.ts）</p>
+				<p>5、npm run startTypeDoc 查看实时文档（根据注释生成文档）</p>
+				<p>6、npm run build 打包 &amp; 生成文档</p>
+				<p>7、npm run docs:dev 查看打包后对应生成的文档</p>
+				<p>8、npm run docs:build 构建线上文档</p>
+				<p>9、遵循@commitlint/config-angular 代码提交规范</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/env.html">env</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/is.html">is</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

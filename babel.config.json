@@ -11,10 +11,12 @@
     ["@babel/preset-typescript"]
   ],
   "plugins": [
-    ["@babel/plugin-transform-runtime",{
-      "corejs": {"version": 3},
-      "useESModules": true
-    }]
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": { "version": 3 },
+        "useESModules": true
+      }
+    ]
   ]
 }
-

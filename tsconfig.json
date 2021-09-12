@@ -24,15 +24,15 @@
     // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
 
     /* Modules */
-    // "module": "esnext",                                /* Specify what module code is generated. */
-    // "rootDir": "./",                                  /* Specify the root folder within your source files. */
+    "module": "es2015" /* Specify what module code is generated. */,
+    // "rootDir": "./" /* Specify the root folder within your source files. */,
     "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
-    "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
+    "baseUrl": "./src" /* Specify the base directory to resolve non-relative module names. */,
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
-    // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
+    // "rootDirs": [] /* Allow multiple folders to be treated as one when resolving modules. */,
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
     "typeRoots": ["./types", "./node_modules/@types"],
-    "types": ["jest", "node"],
+    "types": ["node", "jest"],
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     "resolveJsonModule": true /* Enable importing .json files */,
@@ -40,7 +40,7 @@
 
     /* JavaScript Support */
     "allowJs": true /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */,
-    // "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
+    "checkJs": true /* Enable error reporting in type-checked JavaScript files. */,
     // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from `node_modules`. Only applicable with `allowJs`. */
 
     /* Emit */
@@ -65,7 +65,7 @@
     // "noEmitHelpers": true,                            /* Disable generating custom helper functions like `__extends` in compiled output. */
     // "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
     // "preserveConstEnums": true,                       /* Disable erasing `const enum` declarations in generated code. */
-    // "declarationDir": "./types",                           /* Specify the output directory for generated declaration files. */
+    "declarationDir": "./dist" /* Specify the output directory for generated declaration files. */,
 
     /* Interop Constraints */
     // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
@@ -84,7 +84,7 @@
     // "noImplicitThis": true,                           /* Enable error reporting when `this` is given the type `any`. */
     // "useUnknownInCatchVariables": true,               /* Type catch clause variables as 'unknown' instead of 'any'. */
     // "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
-    "noUnusedLocals": true,                           /* Enable error reporting when a local variables aren't read. */
+    "noUnusedLocals": true /* Enable error reporting when a local variables aren't read. */,
     // "noUnusedParameters": true,                       /* Raise an error when a function parameter isn't read */
     // "exactOptionalPropertyTypes": true,               /* Interpret optional property types as written, rather than adding 'undefined'. */
     // "noImplicitReturns": true,                        /* Enable error reporting for codepaths that do not explicitly return in a function. */
@@ -99,11 +99,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src", "test"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "docs",
-    "typedocs"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "test", "dist", "docs", "typedocs"]
 }

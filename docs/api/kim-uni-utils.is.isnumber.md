@@ -9,7 +9,7 @@
 <b>Signature:</b>
 
 ```typescript
-isNumber: (value: any) => boolean
+isNumber: (value: unknown) => boolean
 ```
 
 ## Example

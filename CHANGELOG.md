@@ -1,6 +1,6 @@
 # 工具库更新日志
 
-## 1.1.9 (2021-09-09)
+## 1.2.2 (2021-09-12)
 
 
 ### Bug Fixes
@@ -15,6 +15,8 @@
 * 接入文档 ([6f6b73c](https://github.com/mr-kings/uni-utils/commit/6f6b73c9b11760d55d5ee7f0a4cb5325e0f3c923))
 * 接入文档 ([6e235ff](https://github.com/mr-kings/uni-utils/commit/6e235ff26c7968f474f5abc078290d76df6273aa))
 * 接入文档 ([a21166a](https://github.com/mr-kings/uni-utils/commit/a21166a9e87fe7339fe7875d79f43dc8ca39a81b))
+* 接入typedoc自动文档生成、优化框架 ([49cd88b](https://github.com/mr-kings/uni-utils/commit/49cd88bda1d55051fe8ded094572685c82913419))
+* 接入typedoc自动文档生成、优化框架 ([2c58c40](https://github.com/mr-kings/uni-utils/commit/2c58c40c982bd7b8aa6b89c5b36d92722c5f6c1d))
 * 修复lint-staged问题 ([81d4485](https://github.com/mr-kings/uni-utils/commit/81d4485f80b926364f9b88da4bd3ea4ace909372))
 * 修复lint-staged问题 ([9652b01](https://github.com/mr-kings/uni-utils/commit/9652b0144b14992777138f9d74241cdaabb29f81))
 * readme ([ade761a](https://github.com/mr-kings/uni-utils/commit/ade761ade91e4d91e10498704b7c3f741ddd7847))

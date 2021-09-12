@@ -2,7 +2,7 @@
  * @packageDocumentation
  */
 
-import * as is from './is';
-import * as env from './env';
+import * as is from './is'
+import * as env from './env'
 
-export { is, env };
+export { is, env }

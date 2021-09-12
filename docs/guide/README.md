@@ -36,16 +36,22 @@ console.log(is.isArray([1,2,3]))
 
 ## 2、开发指南
 
-#### 1、工程按功能模块进行划分 (如：图片相关: src/image.ts, 环境相关：src/env.ts)
+```markdown
+1、工程按功能模块划分 (如：图片相关: src/image.ts, 环境相关: src/env.ts)
 
-#### 2、对方法进行必要的注释 (请参考 tsdoc 注释模板 [API](https://tsdoc.org/pages/tags/alpha/))
+2、对方法进行必要的注释 (请参考 tsdoc 注释模板 [API](https://tsdoc.org/pages/tags/alpha/))
 
-#### 3、开发时遵循统一标准规范（tslint\eslint\prettier）
+3、开发时遵循统一标准规范（editorconfig\eslint\prettier）
 
-#### 4、进行必要的单元测试（test/X.X.ts）
+4、进行必要的单元测试（test/X.X.ts）
 
-#### 5、npm run build 生成文档
+5、npm run startTypeDoc 查看实时文档（根据注释生成文档）
 
-#### 6、npm run docs:dev 查看对应生成文档
+6、npm run build 打包 & 生成文档
 
-#### 7、遵循@commitlint/config-angular 代码提交规范
+7、npm run docs:dev 查看打包后对应生成的文档
+
+8、npm run docs:build 构建线上文档
+
+9、遵循@commitlint/config-angular 代码提交规范
+```
